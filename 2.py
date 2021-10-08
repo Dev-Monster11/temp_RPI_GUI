@@ -5,8 +5,6 @@ import time
 import numpy as n
 from PIL import Image as Img, ImageTk
 from tkinter import *
-from screeninfo import get_monitors
-screen = get_monitors()[0]
 
 with open('/home/pi/screen.txt') as f:
     lines = f.readlines()
@@ -26,7 +24,8 @@ vs1 = VideoStream(src=0).start()
 vs2 = VideoStream(src=2).start()
 time.sleep(1)
 window = Tk()
-window.geometry(str(screen.width) + "x" + str(screen.height))
+#window.geometry(str(screen.width) + "x" + str(screen.height))
+window.geometry("1024x768")
 
 imageLabel1 = Label(window)
 imageLabel2 = Label(window)
@@ -40,7 +39,8 @@ b.place(relx=0.5, rely=0.9, width=100, height=30)
 #imageLabel.grid()
 
 def show_frame():
-    frame1 = imutils.resize(vs1.read(), width=screen.width, height=screen.height)
+    #frame1 = imutils.resize(vs1.read(), width=screen.width, height=screen.height)
+    frame1 = imutils.resize(vs1.read(), width=1024, height=768)
     frame2 = imutils.resize(vs2.read(), width=w, height=h)
     # frame2 = imutils.resize(vs2.read(), width=w, height=h )
 
