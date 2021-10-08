@@ -40,21 +40,21 @@ b.place(relx=0.5, rely=0.9, width=100, height=30)
 
 def show_frame():
     #frame1 = imutils.resize(vs1.read(), width=screen.width, height=screen.height)
-    frame1 = imutils.resize(vs1.read(), width=1024, height=768)
-    frame2 = imutils.resize(vs2.read(), width=w, height=h)
-    # frame2 = imutils.resize(vs2.read(), width=w, height=h )
-
-    #frame1[y:h+y,x:w+x] = frame2
+    frame1 = vs1.read()
+    if (frame1 is not None):
+        frame1 = imutils.resize(frame1, width=1024, height=768)
+        img1 = Img.fromarray(frame1)
+        imgTk1 = ImageTk.PhotoImage(image=img1)
+        imageLabel1.imgTk = imgTk1
+        imageLabel1.configure(image=imgTk1)
     
-    img1 = Img.fromarray(frame1)
-    imgTk1 = ImageTk.PhotoImage(image=img1)
-    imageLabel1.imgTk = imgTk1
-    imageLabel1.configure(image=imgTk1)
-
-    img2 = Img.fromarray(frame2)
-    imgTk2 = ImageTk.PhotoImage(image=img2)
-    imageLabel2.imgTk = imgTk2
-    imageLabel2.configure(image=imgTk2)
+    frame2 = vs2.read()
+    if (frame2 is not None):
+        imutils.resize(frame2, width=w, height=h)
+        img2 = Img.fromarray(frame2)
+        imgTk2 = ImageTk.PhotoImage(image=img2)
+        imageLabel2.imgTk = imgTk2
+        imageLabel2.configure(image=imgTk2)
 
     window.after(40, show_frame)
     
