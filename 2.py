@@ -28,12 +28,14 @@ time.sleep(1)
 window = Tk()
 window.geometry(str(screen.width) + "x" + str(screen.height))
 
-imageLabel = Label(window)
-
-imageLabel.pack()
+imageLabel1 = Label(window)
+imageLabel2 = Label(window)
+imageLabel1.pack()
+imageLabel2.place(x=x, y=y, width=w, height=h)
 b = Button(window, text="Power", command=shutdownCallback)
 
 b.place(relx=0.5, rely=0.9, width=100, height=30)
+
 #l.place(
 #imageLabel.grid()
 
@@ -42,12 +44,18 @@ def show_frame():
     frame2 = imutils.resize(vs2.read(), width=w, height=h)
     # frame2 = imutils.resize(vs2.read(), width=w, height=h )
 
-    frame1[y:h+y,x:w+x] = frame2
+    #frame1[y:h+y,x:w+x] = frame2
     
-    img = Img.fromarray(frame1)
-    imgTk = ImageTk.PhotoImage(image=img)
-    imageLabel.imgTk = imgTk
-    imageLabel.configure(image=imgTk)
+    img1 = Img.fromarray(frame1)
+    imgTk1 = ImageTk.PhotoImage(image=img1)
+    imageLabel1.imgTk = imgTk1
+    imageLabel1.configure(image=imgTk1)
+
+    img2 = Img.fromarray(frame2)
+    imgTk2 = ImageTk.PhotoImage(image=img2)
+    imageLabel2.imgTk = imgTk2
+    imageLabel2.configure(image=imgTk2)
+
     window.after(40, show_frame)
     
 show_frame()
